@@ -15,11 +15,17 @@ soup = BeautifulSoup(data,'lxml')
 entries=soup.findAll(lambda tag:(tag.name=='p' and tag.attrs!={'align': 'center'} or tag.name=='li' and tag.text.startswith('Romero')))
 rows=[]
 for e in entries:
-    words=[i.strip() for i in e.text.replace('\xa0','').split('.')]
-    rows.append(words)
+    words=e.text.replace('\xa0','')
+    splitted=re.split('(?<=[.!?])\s',words)
+    rows.append(splitted)
+#    
+#for row in rows:
+#    if re.search('\d{3}',row[0]):
+#        pass
+#    else:
+#        row.insert(0,'')
+#    
     
-for row in rows:
-    if re.search('\d{3}',rows[0]):
         
     
 
