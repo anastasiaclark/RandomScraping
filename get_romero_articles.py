@@ -27,8 +27,8 @@ def get_pages(c):
     
 for e in entries:
     p=get_pages(e.text)
-    authors=re.split('\d\d\d\d\w?',e.text)[0].strip() ## splits at 4-digit year, takes first element of the list (should be authors)
-    year=re.search('\d\d\d\d\w?',e.text)[0].strip()
+    authors=re.split('\d\d\d\d(\w+)?',e.text)[0].strip() ## splits at 4-digit year, takes first element of the list (should be authors)
+    year=re.search('\d\d\d\d(\w+)?',e.text).group()
     if re.search('(\d+)?\(\d+\):\d+(-\d+)?',e.text):
         volume=re.search('(\d+)?\(\d+\):\d+(-\d+)?',e.text).group().strip()
     else:
